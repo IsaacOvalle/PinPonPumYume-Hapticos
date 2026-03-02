@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 674781575}
   - component: {fileID: 674781578}
   - component: {fileID: 674781577}
-  - component: {fileID: 674781576}
+  - component: {fileID: 674781579}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -422,18 +422,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &674781576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674781574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4e795903f769a4381c5f77a968485c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BotonInicio
 --- !u!114 &674781577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +460,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674781574}
   m_CullTransparentMesh: 1
+--- !u!114 &674781579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674781574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2395a0900111b094e8be9d1a6c5b07fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BotonInicio
 --- !u!1 &690340188
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 674781576}
+      - m_Target: {fileID: 674781579}
         m_TargetAssemblyTypeName: BotonInicio, Assembly-CSharp
         m_MethodName: Jugar
         m_Mode: 1
