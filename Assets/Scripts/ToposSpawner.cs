@@ -22,7 +22,7 @@ public class GeneradorTopos : MonoBehaviour
 
         // Creamos el topo en ese punto
         GameObject nuevoTopo = Instantiate(topoPrefab, puntoElegido.position, puntoElegido.rotation);
-        nuevoTopo.transform.Rotate(-90, 0, 0);
+        nuevoTopo.transform.Rotate(-90, 180, 0);
 
         // Le decimos que se destruya solo después de un rato si no lo golpean
         Destroy(nuevoTopo, tiempoVidaTopo);
