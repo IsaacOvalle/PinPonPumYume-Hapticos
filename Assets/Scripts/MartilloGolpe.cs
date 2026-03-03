@@ -14,6 +14,8 @@ public class MartilloGolpe : MonoBehaviour
     private Quaternion rotacionOriginal;
     private bool golpeando = false;
 
+    public HammerSoundControler HSC;
+
     void Start()
     {
         rotacionOriginal = transform.localRotation;
@@ -40,6 +42,7 @@ public class MartilloGolpe : MonoBehaviour
             {
                 puntos++; // Sumamos 1 punto
                 ActualizarInterfaz();
+                HSC.Golpear();
                 Destroy(hit.collider.gameObject);
             }
         }
