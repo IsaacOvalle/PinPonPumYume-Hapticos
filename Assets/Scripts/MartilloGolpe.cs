@@ -9,7 +9,9 @@ public class MartilloGolpe : MonoBehaviour
 
     // VARIABLES PARA EL PUNTAJE
     public TextMeshProUGUI contadorTexto;
+    public TextMeshProUGUI contadorTexto2;
     private int puntos = 0;
+    private int puntos2 = 0;
 
     private Quaternion rotacionOriginal;
     private bool golpeando = false;
@@ -38,9 +40,18 @@ public class MartilloGolpe : MonoBehaviour
 
         if (Physics.Raycast(rayo, out hit, distanciaGolpe))
         {
-            if (hit.collider.CompareTag("topo"))
+            if (hit.collider.CompareTag("topo bueno"))
             {
                 puntos++; // Sumamos 1 punto
+                puntos2 += 20;
+                ActualizarInterfaz();
+                HSC.Golpear();
+                Destroy(hit.collider.gameObject);
+            }
+            if (hit.collider.CompareTag("topo malo"))
+            {
+                puntos++; // Sumamos 1 punto
+                puntos2 -= 5;
                 ActualizarInterfaz();
                 HSC.Golpear();
                 Destroy(hit.collider.gameObject);
@@ -51,6 +62,7 @@ public class MartilloGolpe : MonoBehaviour
     void ActualizarInterfaz()
     {
         contadorTexto.text = "ANIQUILADOS: " + puntos;
+        contadorTexto2.text = "PUNTOS OBTENIDOS: " + puntos2;
     }
 
     // ... aquí abajo dejas el Coroutine AnimarGolpe igual que lo tenías ...

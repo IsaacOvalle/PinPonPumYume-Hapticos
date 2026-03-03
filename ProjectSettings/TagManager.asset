@@ -6,6 +6,8 @@ TagManager:
   tags:
   - topo
   - Topo
+  - topo bueno
+  - topo malo
   layers:
   - Default
   - TransparentFX
