@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; // IMPORTANTE: Para que reconozca el texto
+using TMPro;
 
 public class MartilloGolpe : MonoBehaviour
 {
@@ -7,16 +7,24 @@ public class MartilloGolpe : MonoBehaviour
     public float anguloGolpe = -45f;
     public float distanciaGolpe = 20f;
 
-    // VARIABLES PARA EL PUNTAJE
-    public TextMeshProUGUI contadorTexto;
-    public TextMeshProUGUI contadorTexto2;
-    private int puntos = 0;
-    private int puntos2 = 0;
+    public GameObject prefabPuntosMas20;
+    public GameObject prefabPuntosMenos5;
+
+    public TextMeshProUGUI contadorAniquilados;
+    public TextMeshProUGUI contadorPuntos;
+    public TextMeshProUGUI contadorEngañados;
+
+    private int aniquilados = 0;
+    private int puntosTotales = 0;
+    private int engañados = 0;
 
     private Quaternion rotacionOriginal;
     private bool golpeando = false;
 
     public HammerSoundControler HSC;
+    public Menupausa scriptMenuPausa;
+    public GestionFinal scriptFinal; // Referencia para las pantallas de victoria/derrota
+    public float rotX = 0f, rotY = 180f, rotZ = 0f;
 
     void Start()
     {
@@ -40,32 +48,87 @@ public class MartilloGolpe : MonoBehaviour
 
         if (Physics.Raycast(rayo, out hit, distanciaGolpe))
         {
+            // --- TOPO BUENO ---
             if (hit.collider.CompareTag("topo bueno"))
             {
-                puntos++; // Sumamos 1 punto
-                puntos2 += 20;
+                aniquilados++;
+                puntosTotales += 50;
+
+                AparecerEfectoPuntos(prefabPuntosMas20, hit.collider.transform.position);
                 ActualizarInterfaz();
                 HSC.Golpear();
                 Destroy(hit.collider.gameObject);
+
+                // CONDICIÓN DE VICTORIA (500 PUNTOS)
+                if (puntosTotales >= 500)
+                {
+                    FinalizarJuego(true); // Enviamos 'true' porque ganó
+                }
             }
+
+            // --- TOPO MALO ---
             if (hit.collider.CompareTag("topo malo"))
             {
-                puntos++; // Sumamos 1 punto
-                puntos2 -= 5;
+                engañados++;
+                puntosTotales -= 30;
+
+                AparecerEfectoPuntos(prefabPuntosMenos5, hit.collider.transform.position);
                 ActualizarInterfaz();
                 HSC.Golpear();
                 Destroy(hit.collider.gameObject);
+
+                // CONDICIÓN DE DERROTA (5 ENGAÑOS)
+                if (engañados >= 5)
+                {
+                    FinalizarJuego(false); // Enviamos 'false' porque perdió
+                }
             }
+        }
+    }
+
+    // NUEVA FUNCIÓN MEJORADA
+    void FinalizarJuego(bool esVictoria)
+    {
+        if (scriptFinal != null)
+        {
+            // Llama a la pantalla de victoria o derrota según el caso
+            scriptFinal.MostrarResultado(esVictoria);
+        }
+        else if (scriptMenuPausa != null)
+        {
+            // Respaldo por si no has configurado el script final todavía
+            scriptMenuPausa.Pausar();
+        }
+
+        // Liberar el mouse para poder picar los botones de las pantallas
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    // Mantenemos esta para compatibilidad o por si quieres pausar manualmente
+    void GanarOPerder()
+    {
+        FinalizarJuego(false);
+    }
+
+    void AparecerEfectoPuntos(GameObject prefab, Vector3 posicion)
+    {
+        if (prefab != null)
+        {
+            GameObject efecto = Instantiate(prefab, posicion + Vector3.up * 0.5f, Quaternion.identity);
+            efecto.transform.LookAt(Camera.main.transform);
+            efecto.transform.Rotate(rotX, rotY, rotZ);
+            Destroy(efecto, 0.5f);
         }
     }
 
     void ActualizarInterfaz()
     {
-        contadorTexto.text = "ANIQUILADOS: " + puntos;
-        contadorTexto2.text = "PUNTOS OBTENIDOS: " + puntos2;
+        contadorAniquilados.text = "ANIQUILADOS: " + aniquilados;
+        contadorPuntos.text = "PUNTOS: " + puntosTotales;
+        contadorEngañados.text = "LOCURA: " + engañados;
     }
 
-    // ... aquí abajo dejas el Coroutine AnimarGolpe igual que lo tenías ...
     System.Collections.IEnumerator AnimarGolpe()
     {
         golpeando = true;
