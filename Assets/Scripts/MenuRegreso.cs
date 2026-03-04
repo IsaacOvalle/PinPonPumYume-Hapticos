@@ -6,7 +6,8 @@ public class MenuRegreso : MonoBehaviour
     public void RegresarMP()
     {
         Debug.Log("Regresando");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("SampleScene");
     }
 
 
