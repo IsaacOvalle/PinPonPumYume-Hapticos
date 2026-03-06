@@ -7,17 +7,7 @@ public class Menupausa : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Juegopause)
-            {
-                Renaudar();
-            }
-            else
-            {
-                Pausar();
-            }
-        }
+
     }
 
     public void Renaudar()

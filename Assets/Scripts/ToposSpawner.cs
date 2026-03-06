@@ -1,32 +1,53 @@
 using UnityEngine;
+using System.Collections; // Necesario para Corrutinas
 using System.Collections.Generic;
 
 public class GeneradorTopos : MonoBehaviour
 {
-    public GameObject[] toposPrefab;      // Aquí arrastra tu Prefab de gato/topo
-    public Transform[] puntosHoyos;    // Aquí arrastra tus 6 puntos vacíos
-    public float tiempoAparicion = 2f; // Cada cuántos segundos sale uno
-    public float tiempoVidaTopo = 1.5f; // Cuánto tiempo se queda antes de esconderse
+    public GameObject[] toposPrefab;
+    public Transform[] puntosHoyos;
+    public float tiempoAparicion = 2f;
 
     void Start()
     {
-        // Empezamos a llamar a la función repetidamente
-        InvokeRepeating("AparecerTopo", 1f, tiempoAparicion);
+        StartCoroutine(RutinaSpawn());
     }
 
-    void AparecerTopo()
+    IEnumerator RutinaSpawn()
     {
-        // Elegimos un hoyo al azar de la lista
-        int indiceAzar = Random.Range(0, puntosHoyos.Length);
-        int indiceAzar2 = Random.Range(0, toposPrefab.Length);
-        Transform puntoElegido = puntosHoyos[indiceAzar];
-        GameObject topoElegido = toposPrefab[indiceAzar2];
+        while (true)
+        {
+            yield return new WaitForSeconds(tiempoAparicion);
 
-        // Creamos el topo en ese punto
-        GameObject nuevoTopo = Instantiate(topoElegido, puntoElegido.position, puntoElegido.rotation);
+            // Lista de hoyos disponibles para no repetir en el mismo turno
+            List<int> hoyosDisponibles = new List<int>();
+            for (int i = 0; i < puntosHoyos.Length; i++) hoyosDisponibles.Add(i);
+
+            // --- PRIMER TOPO ---
+            SpawnAleatorio(hoyosDisponibles);
+
+            // --- SEGUNDO TOPO (50% de probabilidad de salir) ---
+            if (Random.value > 0.5f)
+            {
+                SpawnAleatorio(hoyosDisponibles);
+            }
+        }
+    }
+
+    void SpawnAleatorio(List<int> hoyosDisponibles)
+    {
+        if (hoyosDisponibles.Count == 0) return;
+
+        // Elegimos un hoyo de los que sobran
+        int indiceLista = Random.Range(0, hoyosDisponibles.Count);
+        int indiceHoyo = hoyosDisponibles[indiceLista];
+        hoyosDisponibles.RemoveAt(indiceLista); // Quitamos ese hoyo para que el 2do topo no lo use
+
+        int indiceTopo = Random.Range(0, toposPrefab.Length);
+
+        GameObject nuevoTopo = Instantiate(toposPrefab[indiceTopo], puntosHoyos[indiceHoyo].position, puntosHoyos[indiceHoyo].rotation);
         nuevoTopo.transform.Rotate(-90, 180, 0);
 
-        // Le decimos que se destruya solo después de un rato si no lo golpean
-        Destroy(nuevoTopo, tiempoVidaTopo);
+        // El tiempo de vida ya lo maneja el script Topo.cs en su Start()
     }
 }

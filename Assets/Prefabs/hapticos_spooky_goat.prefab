@@ -79,6 +79,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 46950fa6f506ca44b99c60ead703cb2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2025420763254546270}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 46950fa6f506ca44b99c60ead703cb2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7372767416863799162}
   m_SourcePrefab: {fileID: 100100000, guid: 46950fa6f506ca44b99c60ead703cb2c, type: 3}
 --- !u!1 &122052433315709134 stripped
 GameObject:
@@ -108,3 +111,18 @@ CapsuleCollider:
   m_Height: 0.028964298
   m_Direction: 2
   m_Center: {x: 0.00072507455, y: 2.7455963e-10, z: -0.0011515866}
+--- !u!114 &7372767416863799162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122052433315709134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa91b2df2e7af9241a59b6d44fc5ed1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Topo
+  tiempoDeVida: 0.1
+  tiempoEscalado: 0.1
+  colorAlerta: {r: 0.22745098, g: 0, b: 0, a: 1}

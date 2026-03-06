@@ -8,7 +8,8 @@ public class MenuRegreso : MonoBehaviour
         Debug.Log("Regresando");
         Time.timeScale = 1;
         AudioListener.pause = false;
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
     }
 
 
