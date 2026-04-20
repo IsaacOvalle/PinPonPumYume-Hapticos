@@ -1,8 +1,10 @@
 using UnityEngine;
 using TMPro;
+using System.IO.Ports;
 
 public class MartilloGolpe : MonoBehaviour
 {
+    
     [Header("Configuración de Golpe")]
     public float velocidadGolpe = 15f;
     public float anguloGolpe = -45f;
@@ -68,7 +70,7 @@ public class MartilloGolpe : MonoBehaviour
         }
     }
 
-    void DetectarImpacto()
+    public void DetectarImpacto()
     {
         RaycastHit hit;
         Ray rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -164,7 +166,7 @@ public class MartilloGolpe : MonoBehaviour
             contadorTiempo.text = " " + Mathf.Ceil(tiempoRestante).ToString() + "s";
     }
 
-    System.Collections.IEnumerator AnimarGolpe()
+    public System.Collections.IEnumerator AnimarGolpe()
     {
         golpeando = true;
         Quaternion rotacionMeta = rotacionOriginal * Quaternion.Euler(anguloGolpe, 0, 0);
@@ -184,4 +186,4 @@ public class MartilloGolpe : MonoBehaviour
         }
         golpeando = false;
     }
-}
+} 
