@@ -121,3 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Topo
   tiempoDeVida: 1.5
   tiempoEscalado: 0.2
+  colorAlerta: {r: 1, g: 0, b: 0, a: 1}

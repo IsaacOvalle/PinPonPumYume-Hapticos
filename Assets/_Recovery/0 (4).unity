@@ -1011,8 +1011,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204577932}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.28, y: 0.323, z: -1.534}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.318, y: 0.324, z: -1.516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1042,8 +1042,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256024817}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.538, y: 0.271, z: -0.52}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.506, y: 0.251, z: -0.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1429,13 +1429,13 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 822b0c5dd26aff14d8ac4d254916517f, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 204577933}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 822b0c5dd26aff14d8ac4d254916517f, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 256024818}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 822b0c5dd26aff14d8ac4d254916517f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1538918997}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 822b0c5dd26aff14d8ac4d254916517f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 204577933}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 822b0c5dd26aff14d8ac4d254916517f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1736865120}
@@ -3302,10 +3302,6 @@ MonoBehaviour:
   velocidadGolpe: 15
   anguloGolpe: 45
   distanciaGolpe: 5
-  punto1: {fileID: 256024818}
-  punto2: {fileID: 1538918997}
-  punto3: {fileID: 204577933}
-  punto4: {fileID: 1736865120}
   prefabPuntosMas20: {fileID: 8520388976674744485, guid: 7f23354e8b04fbb43aa9565425b90074, type: 3}
   prefabPuntosMenos5: {fileID: 4873129253051647701, guid: 188c054a04e92844c9cefe3b59729a25, type: 3}
   contadorAniquilados: {fileID: 1239987049}
@@ -3689,8 +3685,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538918996}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.461, y: 0.273, z: -1.489}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.42, y: 0.279, z: -1.509}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4442,12 +4438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArduinoController
   Hammerhead: {fileID: 1423826882}
-  menupausa: {fileID: 88818862}
-  sensoresActivos: 1
-  punto1: {fileID: 256024818}
-  punto2: {fileID: 1538918997}
-  punto3: {fileID: 204577933}
-  punto4: {fileID: 1736865120}
+  menupausa: {fileID: 611342688}
 --- !u!1 &1736865119
 GameObject:
   m_ObjectHideFlags: 0
@@ -4472,8 +4463,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736865119}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.233, y: 0.333, z: -0.569}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.292, y: 0.295, z: -0.563}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4694,47 +4685,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8391222552659086748, guid: df06efad98d5baf48961787616e05b2f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7640558969779515294, guid: df06efad98d5baf48961787616e05b2f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7146521406498821007, guid: df06efad98d5baf48961787616e05b2f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1599826595754709761, guid: df06efad98d5baf48961787616e05b2f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -516098083770646512, guid: df06efad98d5baf48961787616e05b2f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -471763653898702244, guid: df06efad98d5baf48961787616e05b2f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -466329591000292508, guid: df06efad98d5baf48961787616e05b2f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -208595431880416365, guid: df06efad98d5baf48961787616e05b2f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: df06efad98d5baf48961787616e05b2f, type: 3}
       propertyPath: m_Name
       value: CajaPinPonPum
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: df06efad98d5baf48961787616e05b2f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8416272007918961125, guid: df06efad98d5baf48961787616e05b2f, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using System.IO.Ports;
+
 
 public class MartilloGolpe : MonoBehaviour
 {
@@ -9,6 +9,10 @@ public class MartilloGolpe : MonoBehaviour
     public float velocidadGolpe = 15f;
     public float anguloGolpe = -45f;
     public float distanciaGolpe = 20f;
+    public Transform punto1;
+    public Transform punto2;
+    public Transform punto3;
+    public Transform punto4;
 
     [Header("Efectos y Prefabs")]
     public GameObject prefabPuntosMas20;
@@ -70,14 +74,35 @@ public class MartilloGolpe : MonoBehaviour
         }
     }
 
-    public void DetectarImpacto()
+    public void DetectarImpacto(Transform origen = null)
     {
         RaycastHit hit;
-        Ray rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray rayo;
+        Topo scriptTopo;
+
+        if (origen != null)
+        {
+            Vector3 direccion = origen.forward;
+
+            if (origen == punto1|| origen == punto4)
+            {
+                direccion = -origen.forward;
+            }
+
+            // Raycast desde el transform que recibimos
+            rayo = new Ray(origen.position, direccion);
+            Debug.DrawRay(origen.position,-origen.forward * distanciaGolpe, Color.red, 1f);
+
+        }
+        else
+        {
+            // Raycast desde la posición del mouse (modo normal)
+            rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
 
         if (Physics.Raycast(rayo, out hit, distanciaGolpe))
         {
-            Topo scriptTopo = hit.collider.GetComponent<Topo>();
+             scriptTopo = hit.collider.GetComponent<Topo>();
 
             if (hit.collider.CompareTag("topo bueno"))
             {
