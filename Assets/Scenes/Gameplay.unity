@@ -3315,12 +3315,14 @@ MonoBehaviour:
   contadorTiempo: {fileID: 1693185602}
   tiempoRestante: 60
   puntosParaGanar: 500
+  juegoTerminado: 0
   HSC: {fileID: 1423826883}
   scriptMenuPausa: {fileID: 88818862}
   scriptFinal: {fileID: 61135970}
   rotX: -90
   rotY: -45
   rotZ: 45
+  Arduino: {fileID: 0}
 --- !u!114 &1423826883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4443,6 +4445,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArduinoController
   Hammerhead: {fileID: 1423826882}
   menupausa: {fileID: 88818862}
+  menuReturn: {fileID: 61135970}
+  menuRegreso: {fileID: 611342692}
+  ButtonStarted: {fileID: 0}
   sensoresActivos: 1
   punto1: {fileID: 256024818}
   punto2: {fileID: 1538918997}

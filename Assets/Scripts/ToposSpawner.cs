@@ -6,7 +6,7 @@ public class GeneradorTopos : MonoBehaviour
 {
     public GameObject[] toposPrefab;
     public Transform[] puntosHoyos;
-    public float tiempoAparicion = 2f;
+    public float tiempoAparicion = 72f;
 
     void Start()
     {

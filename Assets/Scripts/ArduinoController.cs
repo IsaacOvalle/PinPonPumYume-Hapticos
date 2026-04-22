@@ -1,11 +1,15 @@
-using UnityEngine;
-using System.IO.Ports;
 using System;
+using System.IO.Ports;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 public class ArduinoController : MonoBehaviour
 {
     public SerialPort SP;
     public MartilloGolpe Hammerhead;
     public Menupausa menupausa;
+    public GestionFinal menuReturn;
+    public MenuRegreso menuRegreso;
+
     public bool sensoresActivos = true;
     public Transform punto1;
     public Transform punto2;
@@ -28,17 +32,56 @@ public class ArduinoController : MonoBehaviour
                 string mensaje = SP.ReadLine().Trim();
                  if (mensaje == "Stop")
                 {
-                    Debug.Log("¡Recibí la orden de Stop desde Arduino!");
-                    menupausa.Pausar();
-                    sensoresActivos = false;
-                    if (menupausa.menupausa == null) Debug.LogError("¡No has asignado el panel en el Inspector!");
-                    Debug.Log("Se ha pausado");
+                    if (!Hammerhead.juegoTerminado)
+                    {
+                        if (Time.timeScale > 0)
+                        {
+                            Debug.Log("¡Recibí la orden de Stop desde Arduino!");
+                            menupausa.Pausar();
+                            sensoresActivos = false;
+                            if (menupausa.menupausa == null) Debug.LogError("¡No has asignado el panel en el Inspector!");
+                            Debug.Log("Se ha pausado");
+                        }
+                        else {
+                            Debug.Log("Menu a Regresar");
+                            menuRegreso.RegresarMP();
+                        }
+                        
+                        
+                    }
+                    else {
+
+                        Debug.Log("Juego terminado  Salir");
+                        menuReturn.IrAlMenu();
+                    }
+                    
                 }
                 else if (mensaje == "Go")
                 {
-                    menupausa.Renaudar();
-                    sensoresActivos = true;
-                    Debug.Log("Se ha renaudado");
+                    int escenaActual = SceneManager.GetActiveScene().buildIndex;
+                    Debug.Log("GO RECIBIDO");
+                    if (escenaActual == 0)
+                    {
+                        Debug.Log("Cargando Gameplay");
+
+                        Time.timeScale = 1;
+                        AudioListener.pause = false;
+
+                        SceneManager.LoadScene(escenaActual + 1);
+                        return;
+                    }
+                    if (!Hammerhead.juegoTerminado)
+                    {
+                        menupausa.Renaudar();
+                        sensoresActivos = true;
+                        Debug.Log("Se ha renaudado");
+                    }
+                    else {
+                        
+                        Debug.Log("Juego terminado  Regresar");
+                        menuReturn.VolverAJugar();
+                    }
+                 
                 }
                 if (mensaje.StartsWith("S"))
                 {
@@ -46,25 +89,25 @@ public class ArduinoController : MonoBehaviour
                     //Hammerhead.DetectarImpacto();
                     if (mensaje.Contains("Sensor 1"))
                     {
-                        Hammerhead.DetectarImpacto(punto3);
+                        Hammerhead.DetectarImpacto(punto1);
                         Debug.Log("Se ha golpeado 1");
                         Debug.Log("Mensaje recibido: [" + mensaje + "]");
                     }
                     else if (mensaje.Contains("Sensor 2"))
                     {
-                        Hammerhead.DetectarImpacto(punto1);
+                        Hammerhead.DetectarImpacto(punto2);
                         Debug.Log("Se ha golpeado 2");
                         Debug.Log("Mensaje recibido: [" + mensaje + "]");
                     }
                     else if (mensaje.Contains("Sensor 3"))
                     {
-                        Hammerhead.DetectarImpacto(punto4);
+                        Hammerhead.DetectarImpacto(punto3);
                         Debug.Log("Se ha golpeado 3");
                         Debug.Log("Mensaje recibido: [" + mensaje + "]");
                     }
                     else if (mensaje.Contains("Sensor 4"))
                     {
-                        Hammerhead.DetectarImpacto(punto2);
+                        Hammerhead.DetectarImpacto(punto4);
                         Debug.Log("Se ha golpeado 4");
                         Debug.Log("Mensaje recibido: [" + mensaje + "]");
                     }
@@ -76,6 +119,15 @@ public class ArduinoController : MonoBehaviour
         catch (System.TimeoutException) { }
         catch (System.Exception ex) { Debug.LogWarning("Error leyendo el puerto serial: " + ex.Message); }
         
+    }
+
+    void OnDisable()
+    {
+        if (SP != null && SP.IsOpen)
+        {
+            SP.Close();
+            Debug.Log("Puerto cerrado en OnDisable");
+        }
     }
     void OnApplicationQuit()
     {

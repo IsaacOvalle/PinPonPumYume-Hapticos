@@ -28,7 +28,7 @@ public class MartilloGolpe : MonoBehaviour
     [Header("Reglas de Juego")]
     public float tiempoRestante = 60f; // El tiempo que elijas (ej. 60 segundos)
     public int puntosParaGanar = 500; // La meta de puntos
-    private bool juegoTerminado = false;
+    public bool juegoTerminado = false;
 
     private int aniquilados = 0;
     private int puntosTotales = 0;
@@ -43,6 +43,7 @@ public class MartilloGolpe : MonoBehaviour
     public Menupausa scriptMenuPausa;
     public GestionFinal scriptFinal;
     public float rotX = 0f, rotY = 180f, rotZ = 0f;
+    public ArduinoController Arduino;
 
     void Start()
     {
@@ -147,6 +148,11 @@ public class MartilloGolpe : MonoBehaviour
     {
         if (juegoTerminado) return;
         juegoTerminado = true;
+
+        if (Arduino != null)
+        {
+            Arduino.sensoresActivos = false;
+        }
 
         if (scriptFinal != null) { scriptFinal.MostrarResultado(esVictoria); }
         else if (scriptMenuPausa != null) { scriptMenuPausa.Pausar(); }
