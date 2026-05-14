@@ -197,11 +197,17 @@ public class MartilloGolpe : MonoBehaviour
             contadorTiempo.text = " " + Mathf.Ceil(tiempoRestante).ToString() + "s";
     }
 
-    public System.Collections.IEnumerator AnimarGolpe()
+    public System.Collections.IEnumerator AnimarGolpe(Transform origen = null)
     {
         golpeando = true;
-        Quaternion rotacionMeta = rotacionOriginal * Quaternion.Euler(anguloGolpe, 0, 0);
-        float t = 0;
+        Quaternion rotacionMeta;
+        if (origen != null)
+        {
+            Vector3 direccion = origen.position - transform.position;
+            rotacionMeta = Quaternion.LookRotation(direccion) * Quaternion.Euler(anguloGolpe, 0, 0);
+        }
+        else { rotacionMeta = rotacionOriginal * Quaternion.Euler(anguloGolpe, 0, 0); }
+            float t = 0;
         while (t < 1)
         {
             t += Time.deltaTime * velocidadGolpe;
