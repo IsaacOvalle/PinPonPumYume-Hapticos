@@ -85,35 +85,35 @@ public class ArduinoController : MonoBehaviour
                 }
                 if (mensaje.StartsWith("S"))
                 {
-                    //StartCoroutine(Hammerhead.AnimarGolpe());
-                    //Hammerhead.DetectarImpacto();
+                    StartCoroutine(Hammerhead.AnimarGolpe());
+                    Hammerhead.DetectarImpacto();
                     if (mensaje.Contains("Sensor 1"))
                     {
                         Hammerhead.DetectarImpacto(punto1);
                         Debug.Log("Se ha golpeado 1");
                         Debug.Log("Mensaje recibido: [" + mensaje + "]");
-                        StartCoroutine(Hammerhead.AnimarGolpe(punto1));
+                        //StartCoroutine(Hammerhead.AnimarGolpe(punto1));
                     }
                     else if (mensaje.Contains("Sensor 2"))
                     {
                         Hammerhead.DetectarImpacto(punto2);
                         Debug.Log("Se ha golpeado 2");
                         Debug.Log("Mensaje recibido: [" + mensaje + "]");
-                        StartCoroutine(Hammerhead.AnimarGolpe(punto2));
+                        //StartCoroutine(Hammerhead.AnimarGolpe(punto2));
                     }
                     else if (mensaje.Contains("Sensor 3"))
                     {
                         Hammerhead.DetectarImpacto(punto3);
                         Debug.Log("Se ha golpeado 3");
                         Debug.Log("Mensaje recibido: [" + mensaje + "]");
-                        StartCoroutine(Hammerhead.AnimarGolpe(punto3));
+                        //StartCoroutine(Hammerhead.AnimarGolpe(punto3));
                     }
                     else if (mensaje.Contains("Sensor 4"))
                     {
                         Hammerhead.DetectarImpacto(punto4);
                         Debug.Log("Se ha golpeado 4");
                         Debug.Log("Mensaje recibido: [" + mensaje + "]");
-                        StartCoroutine(Hammerhead.AnimarGolpe(punto4));
+                        //StartCoroutine(Hammerhead.AnimarGolpe(punto4));
                     }
                     Debug.Log("Se ha golpeado");
                 }
